@@ -6,9 +6,9 @@ void setup() {
 
 void loop() {
   int raw = analogRead(PEDAL_PIN);
-  raw = constrain(raw, 0, 1023);
+  raw = constrain(raw, 80, 1023);
 
-  int percent = map(raw, 0, 1023, 0, 100);
+  int percent = map(raw, 80, 1023, 0, 100);
   Serial.print("Raw: ");
   Serial.print(raw);
 
