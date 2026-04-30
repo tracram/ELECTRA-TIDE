@@ -1,34 +1,20 @@
-
-
-//code pour simuler une pedale avec un potentiometre
-const int pedalPin = A0; // Pin du potentiomètre
-
-
-const int deadZone = 10;
-const int maxPedalValue = 1023;
-
-void pedalReadPercent() {
-    pedalRaw = analogRead(pedalPin);
-    raw=constrain(pedalRaw, deadZone, maxPedalValue);
-    int percent=map(raw, deadZone, maxPedalValue, 0, 100);
-    return percent;
-}
+const int PEDAL_PIN = A0;
 
 void setup() {
-    Serial.begin(115200);
+  Serial.begin(115200);
 }
 
 void loop() {
-    int pedalPercent = pedalReadPercent();
-    int pedalRaw = analogRead(pedalPin);
-//debug :
+  int raw = analogRead(PEDAL_PIN);
+  raw = constrain(raw, 0, 1023);
 
-    Serial.print("Pedal Raw: ");
-    Serial.print(pedalRaw);
-    Serial.print(" | Pedal Percent: ");
-    Serial.print(pedalPercent);
-    Serial.println("%");
+  int percent = map(raw, 0, 1023, 0, 100);
+  Serial.print("Raw: ");
+  Serial.print(raw);
 
-    delay(500);
+  Serial.print(" | Percent: ");
+  Serial.print(percent);
+  Serial.println(" %");
 
+  delay(500);
 }
